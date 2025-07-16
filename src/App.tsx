@@ -29,6 +29,10 @@ export const App: React.FC = () => {
   const [activeButton, setActiveButton] = useState<string>('');
   const [isReversed, setIsReversed] = useState(false);
 
+  const isListChanged = () => {
+    return JSON.stringify(list) !== JSON.stringify(goodsFromServer);
+  };
+
   return (
     <div className="section content">
       <div className="buttons">
@@ -65,7 +69,7 @@ export const App: React.FC = () => {
           Reverse
         </button>
 
-        {list !== goodsFromServer && (
+        {isListChanged() && (
           <button
             type="button"
             onClick={() => {
